@@ -2,10 +2,7 @@ body {
     text-align: center;
     background-color: #222;
     color: white;
-    overflow-x: hidden;
-    overflow-y: auto;
-    font-family: Arial, sans-serif;
-    height: 100vh;
+    overflow: hidden;
 }
 
 .hidden {
@@ -240,76 +237,3 @@ Mensaje de error de compra
 #ocultarLog{
     display: hidden;
 }
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 600px) {
-    h1, h2 {
-        font-size: 1.5rem;
-    }
-    button {
-        width: 90%;
-        padding: 10px;
-    }
-    #juego {
-        padding: 15px;
-    }
-    .modal {
-        width: 95%;
-        padding: 15px;
-    }
-}
-
-/* Ajustes para tablets */
-@media (max-width: 900px) {
-    #juego {
-        padding: 20px;
-    }
-}
-
-/* Estilos adicionales para mejorar la UI */
-h1, h2 {
-    color: #f1c40f;
-}
-
-#inicio, #juego {
-    margin-top: 20px;
-}
-
-button {
-    margin: 10px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-#log {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 1.1rem;
-    color: #ecf0f1;
-    margin-top: 20px;
-}
-
-#juego {
-    background: #2c3e50;
-    padding: 30px;
-    border-radius: 15px;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-#inventario {
-    font-size: 1.1rem;
-}
-
-h3 {
-    color: #1abc9c;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background: #f1c40f;
-    margin: 10px 0;
-}
-
