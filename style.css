@@ -2,7 +2,10 @@ body {
     text-align: center;
     background-color: #222;
     color: white;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+    height: 100vh;
 }
 
 .hidden {
@@ -291,6 +294,8 @@ button {
     background: #2c3e50;
     padding: 30px;
     border-radius: 15px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 #inventario {
@@ -307,3 +312,4 @@ hr {
     background: #f1c40f;
     margin: 10px 0;
 }
+
