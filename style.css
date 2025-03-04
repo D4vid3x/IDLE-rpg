@@ -1,0 +1,225 @@
+body {
+    text-align: center;
+    background-color: #222;
+    color: white;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-timer {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#modalFabricacion {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0;
+}
+
+#modalFabricacion.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#modalInventario {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0;
+}
+
+#modalInventario.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    animation: float 1s ease-out;
+}
+
+@keyframes float {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+/* Añadido estilo para mejorar la UI */
+h1, h2 {
+    color: #f1c40f;
+}
+
+#inicio, #juego {
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+}
+
+#log {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1.1rem;
+    color: #ecf0f1;
+    margin-top: 20px;
+}
+
+#juego {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+#inventario {
+    font-size: 1.1rem;
+}
+
+h3 {
+    color: #1abc9c;
+}
+
+
+
+/**
+Mensaje de error de fabricación
+*/
+#modalErrorFabricacion {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(194, 5, 5, 0.95); /* Rojo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja */
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0;
+    text-align: center;
+    width: 300px;
+    font-family: Arial, sans-serif;
+}
+
+#modalErrorFabricacion.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#modalErrorFabricacion h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#modalErrorFabricacion button {
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#modalErrorFabricacion button:hover {
+    background: #cc0000; /* Rojo más oscuro */
+}
+
+
+#modalTienda {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0;
+}
+
+#modalTienda.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/**
+Mensaje de error de compra
+*/
+#modalErrorCompra {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(194, 5, 5, 0.95); /* Rojo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja */
+    transition: transform 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0;
+    text-align: center;
+    width: 300px;
+    font-family: Arial, sans-serif;
+}
+
+#modalErrorCompra.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#modalErrorCompra h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#modalErrorCompra button {
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#modalErrorCompra button:hover {
+    background: #cc0000; /* Rojo más oscuro */
+}
+
+#ocultarLog{
+    display: hidden;
+}

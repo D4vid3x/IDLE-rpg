@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle RPG</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div id="inicio">
+        <h1>Idle RPG</h1>
+        <button class="btn btn-primary" onclick="iniciarJuego()">Jugar</button>
+    </div>
+
+    <div id="juego" class="hidden">
+        <h2>Bienvenido, <span id="player-name">Jugador</span></h2>
+        <p>HP: <span id="hp">100</span></p>
+        <p>ATK: <span id="atk">2</span></p>
+        <p>XP: <span id="xp">0</span> / <span id="xpMax">100</span> (Nivel <span id="nivel">1</span>)</p>
+        <p>Energía: <span id="energia">100</span> / 100</p>
+        <p>Oro: <span id="oro">0</span></p>
+        <button id="btnCazar" class="btn btn-success" onclick="recolectar('carne')">Cazar</button>
+        <button id="btnTalar" class="btn btn-success" onclick="recolectar('madera')">Talar</button>
+        <button id="btnPescar" class="btn btn-info" onclick="recolectar('peces')">Pescar</button>
+        <br><br>
+        <button class="btn btn-warning" onclick="abrirInventario()">Inventario</button>
+        <button class="btn btn-warning" onclick="abrirFabricacion()">Fabricación</button>
+        <button class="btn btn-warning" onclick="abrirTienda()">Tienda</button>
+        <button id="btnQuest" class="btn btn-danger" onclick="combatir()">Quest</button>
+        <p id="log"></p>
+    </div>
+
+        <!-- Modal de Inventario -->
+        <div id="modalInventario" class="hidden">
+            <h3>Inventario</h3>
+            <p>Recursos: Madera <span id="madera">0</span> | Peces <span id="peces">0</span> | Carne <span id="carne">0</span></p>
+            <p><strong>Tablones:</strong> <span id="tablones">0</span></p>
+            <p><strong>Vigas:</strong> <span id="vigas">0</span></p>
+            <p><strong>Peces Verdes:</strong> <span id="pecesVerdes">0</span></p>
+            <p><strong>Peces Dorados:</strong> <span id="pecesDorados">0</span></p>
+            <p><strong>Carne Seca:</strong> <span id="carneSeca">0</span></p>
+            <p><strong>Poción Pequeña:</strong> <span id="pocionVidaPequeña">0</span><button onclick="curar('pocionVidaPequeña')">Usar</button></p>
+            <p><strong>Poción Mediana:</strong> <span id="pocionVidaMediana">0</span><button onclick="curar('pocionVidaMediana')">Usar</button></p>
+            <p><strong>Poción Grande:</strong> <span id="pocionVidaGrande">0</span> <button onclick="curar('pocionVidaGrande')">Usar</button></p>
+
+            <br>
+            <button id="cerrar" onclick="cerrarInventario()">Cerrar</button>
+        </div>
+
+    <!-- Modal de Fabricación -->
+    <div id="modalFabricacion" class="hidden">
+        <h2>Fabricación</h2>
+        <button onclick="fabricar('tablones')">5 Madera → 1 Tablón</button>
+        <button onclick="fabricar('vigas')">3 Tablones → 1 Viga</button>
+        <button onclick="fabricar('pecesVerdes')">5 Peces → 1 Pez Verde</button>
+        <button onclick="fabricar('pecesDorados')">3 Peces Verdes → 1 Pez Dorado</button>
+        <button onclick="fabricar('carneSeca')">3 Carne → 1 Carne Seca</button>
+        <br>
+        <button id="cerrar" onclick="cerrarFabricacion()">Cerrar</button>
+    </div>
+
+    <!-- Modal de Error de fabricación -->
+    <div id="modalErrorFabricacion" class="hidden">
+        <h2>Materiales Insuficientes</h2>
+        <p>No hay suficientes materiales para completar la fabricación.</p>
+        <br>
+        <button id="cerrar" onclick="cerrarErrorFabricacion()">Cerrar</button>
+    </div>
+
+    <!-- Modal de Tienda -->
+    <div id="modalTienda" class="hidden">
+        <h2>Tienda</h2>
+        <button onclick="comprar('pocionVidaPequeña')">Comprar: 5 Oro → 1 Poción pequeña</button>
+        <button onclick="comprar('pocionVidaMediana')">Comprar: 15 Oro → 1 Poción mediana</button>
+        <button onclick="comprar('pocionVidaGrande')">Comprar: 30 Oro → 1 Poción grande</button>
+        <button onclick="vender('madera')">Vender: 30 Madera → 1 Oro</button>
+        <button onclick="vender('tablones')">Vender: 15 Tablones → 5 Oro</button>
+        <button onclick="vender('vigas')">Vender: 10 Vigas → 10 Oro</button>
+        <button onclick="vender('peces')">Vender: 30 Peces → 1 Oro</button>
+        <button onclick="vender('pecesVerdes')">Vender: 15 Peces Verdes → 5 Oro</button>
+        <button onclick="vender('pecesDorados')">Vender: 10 Peces Dorados → 10 Oro</button>
+        <button onclick="vender('pecesDorados')">Vender: 30 Carne → 1 Oro</button>
+        <button onclick="vender('pecesDorados')">Vender: 15 Carne Seca → 5 Oro</button>
+
+        <br>
+        <button id="cerrar" onclick="cerrarTienda()">Cerrar</button>
+    </div>
+
+
+
+    <!-- Modal de Error de Compra -->
+    <div id="modalErrorCompra" class="hidden">
+        <h2>Oro Insuficiente</h2>
+        <p>Completa quest para ganar oro</p>
+        <br>
+        <button id="cerrar" onclick="cerrarErrorCompra()">Cerrar</button>
+    </div>
+
+    
+</body>
+</html>
