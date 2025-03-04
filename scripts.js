@@ -16,9 +16,22 @@ let jugador = JSON.parse(sessionStorage.getItem('usuario')) || {
     carneSeca: 0,
     pocionVidaPequeña: 0,
     pocionVidaMediana: 0,
-    pocionVidaGrande: 0
-
+    pocionVidaGrande: 0, 
 };
+let espadas=[
+    {espada: 'madera', dmg: 5, coste: 10, durabilidad: 5 },
+    {espada: 'piedra', dmg: 20, coste: 30, durabilidad: 20 },
+    {espada: 'plata', dmg: 35, coste: 60, durabilidad: 35 },
+    {espada: 'oricalco', dmg: 500, coste: 1000, durabilidad: 100 },
+]
+
+let armaduras=[
+    {espada: 'tela', dmg: 5, coste: 10, durabilidad: 5 },
+    {espada: 'cuero', dmg: 20, coste: 30, durabilidad: 20 },
+    {espada: 'metal', dmg: 35, coste: 60, durabilidad: 35 },
+    {espada: 'oricalco', dmg: 500, coste: 1000, durabilidad: 100 },
+]
+
 let temporizadores = {};
 
 function iniciarJuego() {
@@ -94,7 +107,7 @@ function recolectar(tipo) {
                 jugador.energia = Math.min(jugador.energia + 20, 100);
                 actualizarHUD();
             }
-        }, 15000);
+        }, 1000); //Tiempo de recuperacion de energía 1000 = 1 seg
     }
 
     // Restablece el botón después de 30 segundos
@@ -323,7 +336,7 @@ function comprar(tipo) {
 }
 
 
-function vender(){
+function vender(tipo){
     
     if(tipo ==='madera'){
         if(jugador.madera >= 30){
@@ -335,14 +348,49 @@ function vender(){
     }else if(tipo ==='tablones'){
         if(jugador.tablones >= 15){
             jugador.oro +=5;
-            jugador[tipo] = (jugador[tipo] || 0) - 5; 
+            jugador[tipo] = (jugador[tipo] || 0) - 15; 
         }else{
             $('#modalErrorCompra').removeClass('hidden').addClass('show');
         }
     }else if(tipo === 'vigas'){
         if(jugador.vigas >= 10){
             jugador.oro +=10;
-            jugador[tipo] = (jugador[tipo] || 0) - 1; 
+            jugador[tipo] = (jugador[tipo] || 0) - 10; 
+        }else{
+            $('#modalErrorCompra').removeClass('hidden').addClass('show');
+        }
+    }else if(tipo === 'peces'){
+        if(jugador.peces >= 10){
+            jugador.oro +=10;
+            jugador[tipo] = (jugador[tipo] || 0) - 30; 
+        }else{
+            $('#modalErrorCompra').removeClass('hidden').addClass('show');
+        }
+    }else if(tipo === 'pecesVerdes'){
+        if(jugador.pecesVerdes >= 15){
+            jugador.oro +=5;
+            jugador[tipo] = (jugador[tipo] || 0) - 15; 
+        }else{
+            $('#modalErrorCompra').removeClass('hidden').addClass('show');
+        }
+    }else if(tipo === 'pecesDorados'){
+        if(jugador.pecesDorados >= 10){
+            jugador.oro +=10;
+            jugador[tipo] = (jugador[tipo] || 0) - 10; 
+        }else{
+            $('#modalErrorCompra').removeClass('hidden').addClass('show');
+        }
+    }else if(tipo === 'carne'){
+        if(jugador.carne >= 30){
+            jugador.oro +=1;
+            jugador[tipo] = (jugador[tipo] || 0) - 30; 
+        }else{
+            $('#modalErrorCompra').removeClass('hidden').addClass('show');
+        }
+    }else if(tipo === 'carneSeca'){
+        if(jugador.carneSeca >= 15){
+            jugador.oro +=5;
+            jugador[tipo] = (jugador[tipo] || 0) - 15; 
         }else{
             $('#modalErrorCompra').removeClass('hidden').addClass('show');
         }
