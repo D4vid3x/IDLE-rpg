@@ -70,23 +70,33 @@
     </div>
 
     <!-- Modal de Tienda -->
-    <div id="modalTienda" class="hidden">
-        <h2>Tienda</h2>
+<div id="modalTienda" class="hidden">
+    <h2>Tienda</h2>
+    
+    <div class="tienda-section">
+        <h3>Comprar</h3>
         <button onclick="comprar('pocionVidaPequeña')">Comprar: 5 Oro → 1 Poción pequeña</button>
         <button onclick="comprar('pocionVidaMediana')">Comprar: 15 Oro → 1 Poción mediana</button>
         <button onclick="comprar('pocionVidaGrande')">Comprar: 30 Oro → 1 Poción grande</button>
+    </div>
+    
+    <hr>
+    
+    <div class="tienda-section">
+        <h3>Vender</h3>
         <button onclick="vender('madera')">Vender: 30 Madera → 1 Oro</button>
         <button onclick="vender('tablones')">Vender: 15 Tablones → 5 Oro</button>
         <button onclick="vender('vigas')">Vender: 10 Vigas → 10 Oro</button>
         <button onclick="vender('peces')">Vender: 30 Peces → 1 Oro</button>
         <button onclick="vender('pecesVerdes')">Vender: 15 Peces Verdes → 5 Oro</button>
         <button onclick="vender('pecesDorados')">Vender: 10 Peces Dorados → 10 Oro</button>
-        <button onclick="vender('pecesDorados')">Vender: 30 Carne → 1 Oro</button>
-        <button onclick="vender('pecesDorados')">Vender: 15 Carne Seca → 5 Oro</button>
-
-        <br>
-        <button id="cerrar" onclick="cerrarTienda()">Cerrar</button>
+        <button onclick="vender('carne')">Vender: 30 Carne → 1 Oro</button>
+        <button onclick="vender('carneSeca')">Vender: 15 Carne Seca → 5 Oro</button>
     </div>
+    
+    <br>
+    <button id="cerrar" onclick="cerrarTienda()">Cerrar</button>
+</div>
 
 
 
