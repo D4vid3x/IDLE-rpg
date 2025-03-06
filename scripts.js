@@ -23,14 +23,14 @@ let espadas=[
     {espada: 'piedra', dmg: 20, coste: 30, durabilidad: 20 },
     {espada: 'plata', dmg: 35, coste: 60, durabilidad: 35 },
     {espada: 'oricalco', dmg: 500, coste: 1000, durabilidad: 100 },
-]
+];
 
 let armaduras=[
     {espada: 'tela', dmg: 5, coste: 10, durabilidad: 5 },
     {espada: 'cuero', dmg: 20, coste: 30, durabilidad: 20 },
     {espada: 'metal', dmg: 35, coste: 60, durabilidad: 35 },
     {espada: 'oricalco', dmg: 500, coste: 1000, durabilidad: 100 },
-]
+];
 
 let temporizadores = {};
 
@@ -172,15 +172,17 @@ function combatir() {
         subirNivel();
     } else {
         log += "¡Has muerto! Reiniciando juego...";
-        setTimeout(() => location.reload(), 3000);
+        setTimeout(() =>{
+            location.reload();
+            sessionStorage.clear();
+        }, 3000);
     }
 
     jugador.hp = hpJugador;
     actualizarHUD();
      $('#log').text(log);
-     setTimeout( () => {
-        $('#log').text(log).remove();
-     },30000)
+     $('#modalLogCombate').removeClass('hidden').addClass('show');
+    
 }
 
 function usarHabilidadJugador() {
@@ -301,6 +303,7 @@ function subirNivel() {
 
 function abrirTienda() {
     $('#modalTienda').removeClass('hidden').addClass('show');
+    
 }
 
 function cerrarTienda() {
@@ -400,6 +403,7 @@ function vender(tipo){
 function cerrarErrorCompra() {
     $('#modalErrorCompra').removeClass('show');
     setTimeout(() => $('#modalErrorCompra').addClass('hidden'), 300);
+
 }
 
 function curar(tipo){
@@ -429,6 +433,16 @@ function curar(tipo){
 }
 function guardarProgreso() {
     sessionStorage.setItem('usuario', JSON.stringify(jugador));
+}
+
+
+function log(){
+    $('#modalLogCombate').removeClass('hidden').addClass('show');
+}
+
+function cerrarLog(){
+    $('#modalLogCombate').removeClass('show');
+    setTimeout(() => $('#modalLogCombate').addClass('hidden'), 300);
 }
 
 setInterval(guardarProgreso, 60000); // Guardar cada minuto
