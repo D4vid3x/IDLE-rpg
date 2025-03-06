@@ -107,7 +107,7 @@ function recolectar(tipo) {
                 jugador.energia = Math.min(jugador.energia + 20, 100);
                 actualizarHUD();
             }
-        }, 1000); //Tiempo de recuperacion de energía 1000 = 1 seg
+        }, 15000); //Tiempo de recuperacion de energía 1000 = 1 seg
     }
 
     // Restablece el botón después de 30 segundos
