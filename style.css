@@ -14,7 +14,12 @@ body {
     opacity: 0.5;
 }
 
-#modalFabricacion {
+#modalFabricacion, 
+#modalInventario, 
+#modalErrorFabricacion, 
+#modalTienda, 
+#modalErrorCompra, 
+#modalLogCombate {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -26,53 +31,63 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     transition: transform 0.3s ease-in-out, opacity 0.3s;
     opacity: 0;
+    max-height: 80vh; /* Limita la altura del modal */
+    overflow-y: auto; /* Añade scroll vertical */
+    width: 300px; /* Ajuste para el ancho */
 }
 
-#modalFabricacion.show {
+#modalFabricacion.show,
+#modalInventario.show,
+#modalErrorFabricacion.show,
+#modalTienda.show,
+#modalErrorCompra.show,
+#modalLogCombate.show {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-#modalInventario {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: transform 0.3s ease-in-out, opacity 0.3s;
-    opacity: 0;
+#modalErrorFabricacion, 
+#modalErrorCompra {
+    background: rgba(194, 5, 5, 0.95); /* Rojo oscuro */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja */
+    text-align: center;
 }
 
-#modalInventario.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+#modalErrorFabricacion h2,
+#modalErrorCompra h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: yellow;
-    border-radius: 50%;
-    animation: float 1s ease-out;
+#modalErrorFabricacion button,
+#modalErrorCompra button {
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-@keyframes float {
-    from {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
+#modalErrorFabricacion button:hover,
+#modalErrorCompra button:hover {
+    background: #cc0000; /* Rojo más oscuro */
 }
 
-/* Añadido estilo para mejorar la UI */
+#modalTienda .tienda-section h3 {
+    color: #f1c40f;
+    margin-bottom: 10px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #f1c40f;
+    margin: 10px 0;
+}
+
 h1, h2 {
     color: #f1c40f;
 }
@@ -107,152 +122,7 @@ h3 {
     color: #1abc9c;
 }
 
-
-
-/**
-Mensaje de error de fabricación
-*/
-#modalErrorFabricacion {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(194, 5, 5, 0.95); /* Rojo oscuro */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja */
-    transition: transform 0.3s ease-in-out, opacity 0.3s;
-    opacity: 0;
-    text-align: center;
-    width: 300px;
-    font-family: Arial, sans-serif;
-}
-
-#modalErrorFabricacion.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-#modalErrorFabricacion h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#modalErrorFabricacion button {
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#modalErrorFabricacion button:hover {
-    background: #cc0000; /* Rojo más oscuro */
-}
-
-
-#modalTienda {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: transform 0.3s ease-in-out, opacity 0.3s;
-    opacity: 0;
-}
-
-#modalTienda.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-.tienda-section {
-    margin-bottom: 15px;
-}
-
-.tienda-section h3 {
-    color: #f1c40f;
-    margin-bottom: 10px;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background: #f1c40f;
-    margin: 10px 0;
-}
-
-/**
-Mensaje de error de compra
-*/
-#modalErrorCompra {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(194, 5, 5, 0.95); /* Rojo oscuro */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Sombra roja */
-    transition: transform 0.3s ease-in-out, opacity 0.3s;
-    opacity: 0;
-    text-align: center;
-    width: 300px;
-    font-family: Arial, sans-serif;
-}
-
-#modalErrorCompra.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-#modalErrorCompra h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#modalErrorCompra button {
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#modalErrorCompra button:hover {
-    background: #cc0000; /* Rojo más oscuro */
-}
-
-#ocultarLog{
+/* Estilo para el ocultamiento de logs */
+#ocultarLog {
     display: hidden;
-}
-
-#modalLogCombate {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: transform 0.3s ease-in-out, opacity 0.3s;
-    opacity: 0;
-}
-
-#modalLogCombate.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
 }
