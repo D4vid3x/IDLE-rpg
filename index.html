@@ -2,112 +2,159 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Idle RPG</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts.js" defer></script>
 </head>
-<body>
-    <div id="inicio">
-        <h1>Idle RPG</h1>
+<body class="text-center bg-dark text-white">
+    <!-- Pantalla de inicio -->
+    <div id="inicio" class="container mt-5">
+        <h1 class="text-warning">Idle RPG</h1>
         <button class="btn btn-primary" onclick="iniciarJuego()">Jugar</button>
     </div>
 
-    <div id="juego" class="hidden">
+    <!-- Pantalla del juego -->
+    <div id="juego" class="container mt-4 hidden">
         <h2>Bienvenido, <span id="player-name">Jugador</span></h2>
-        <p>HP: <span id="hp">100</span></p>
-        <p>ATK: <span id="atk">2</span></p>
-        <p>XP: <span id="xp">0</span> / <span id="xpMax">100</span> (Nivel <span id="nivel">1</span>)</p>
-        <p>Energía: <span id="energia">100</span> / 100</p>
-        <p>Oro: <span id="oro">0</span></p>
-        <button id="btnCazar" class="btn btn-success" onclick="recolectar('carne')">Cazar</button>
-        <button id="btnTalar" class="btn btn-success" onclick="recolectar('madera')">Talar</button>
-        <button id="btnPescar" class="btn btn-info" onclick="recolectar('peces')">Pescar</button>
-        <br><br>
-        <button class="btn btn-warning" onclick="abrirInventario()">Inventario</button>
-        <button class="btn btn-warning" onclick="abrirFabricacion()">Fabricación</button>
-        <button class="btn btn-warning" onclick="abrirTienda()">Tienda</button>
-        <button id="btnQuest" class="btn btn-danger" onclick="combatir()">Quest</button>
-        <p id="log"></p>
+        <div class="row">
+            <div class="col-md-4">HP: <span id="hp">100</span></div>
+            <div class="col-md-4">ATK: <span id="atk">2</span></div>
+            <div class="col-md-4">Oro: <span id="oro">0</span></div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">XP: <span id="xp">0</span> / <span id="xpMax">100</span> (Nivel <span id="nivel">1</span>)</div>
+            <div class="col-md-6">Energía: <span id="energia">100</span> / 100</div>
+        </div>
+        <div class="mt-3">
+            <button id="btnCazar" class="btn btn-success" onclick="recolectar('carne')">Cazar</button>
+            <button id="btnTalar" class="btn btn-success" onclick="recolectar('madera')">Talar</button>
+            <button id="btnPescar" class="btn btn-info" onclick="recolectar('peces')">Pescar</button>
+        </div>
+        <div class="mt-3">
+            <button class="btn btn-warning" onclick="abrirInventario()">Inventario</button>
+            <button class="btn btn-warning" onclick="abrirFabricacion()">Fabricación</button>
+            <button class="btn btn-warning" onclick="abrirTienda()">Tienda</button>
+            <button id="btnQuest" class="btn btn-danger" onclick="combatir()">Quest</button>
+            <button class="btn btn-secondary" onclick="log()">Último Combate</button>
+        </div>
     </div>
 
-        <!-- Modal de Inventario -->
-        <div id="modalInventario" class="hidden">
-            <h3>Inventario</h3>
-            <p>Recursos: Madera <span id="madera">0</span> | Peces <span id="peces">0</span> | Carne <span id="carne">0</span></p>
-            <p><strong>Tablones:</strong> <span id="tablones">0</span></p>
-            <p><strong>Vigas:</strong> <span id="vigas">0</span></p>
-            <p><strong>Peces Verdes:</strong> <span id="pecesVerdes">0</span></p>
-            <p><strong>Peces Dorados:</strong> <span id="pecesDorados">0</span></p>
-            <p><strong>Carne Seca:</strong> <span id="carneSeca">0</span></p>
-            <p><strong>Poción Pequeña:</strong> <span id="pocionVidaPequeña">0</span><button onclick="curar('pocionVidaPequeña')">Usar</button></p>
-            <p><strong>Poción Mediana:</strong> <span id="pocionVidaMediana">0</span><button onclick="curar('pocionVidaMediana')">Usar</button></p>
-            <p><strong>Poción Grande:</strong> <span id="pocionVidaGrande">0</span> <button onclick="curar('pocionVidaGrande')">Usar</button></p>
-
-            <br>
-            <button id="cerrar" onclick="cerrarInventario()">Cerrar</button>
+    <!-- Modal de Inventario -->
+    <div id="modalInventario" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inventario</h5>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" onclick="cerrarInventario()"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Recursos: Madera <span id="madera">0</span> | Peces <span id="peces">0</span> | Carne <span id="carne">0</span></p>
+                    <p>Tablones: <span id="tablones">0</span> | Vigas: <span id="vigas">0</span></p>
+                    <p>Peces Verdes: <span id="pecesVerdes">0</span> | Peces Dorados: <span id="pecesDorados">0</span></p>
+                    <p>Carne Seca: <span id="carneSeca">0</span></p>
+                    <p>Pociones: Pequeña <span id="pocionVidaPequeña">0</span> | Mediana <span id="pocionVidaMediana">0</span> | Grande <span id="pocionVidaGrande">0</span></p>
+                    <button onclick="curar('pocionVidaPequeña')">Usar Poción Pequeña</button>
+                    <button onclick="curar('pocionVidaMediana')">Usar Poción Mediana</button>
+                    <button onclick="curar('pocionVidaGrande')">Usar Poción Grande</button>
+                </div>
+            </div>
         </div>
+    </div>
 
     <!-- Modal de Fabricación -->
-    <div id="modalFabricacion" class="hidden">
-        <h2>Fabricación</h2>
-        <button onclick="fabricar('tablones')">5 Madera → 1 Tablón</button>
-        <button onclick="fabricar('vigas')">3 Tablones → 1 Viga</button>
-        <button onclick="fabricar('pecesVerdes')">5 Peces → 1 Pez Verde</button>
-        <button onclick="fabricar('pecesDorados')">3 Peces Verdes → 1 Pez Dorado</button>
-        <button onclick="fabricar('carneSeca')">3 Carne → 1 Carne Seca</button>
-        <br>
-        <button id="cerrar" onclick="cerrarFabricacion()">Cerrar</button>
+    <div id="modalFabricacion" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fabricación</h5>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" onclick="cerrarFabricacion()"></button>
+                </div>
+                <div class="modal-body">
+                    <button onclick="fabricar('tablones')">5 Madera → 1 Tablón</button>
+                    <button onclick="fabricar('vigas')">3 Tablones → 1 Viga</button>
+                    <button onclick="fabricar('pecesVerdes')">5 Peces → 1 Pez Verde</button>
+                    <button onclick="fabricar('pecesDorados')">3 Peces Verdes → 1 Pez Dorado</button>
+                    <button onclick="fabricar('carneSeca')">3 Carne → 1 Carne Seca</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal de Error de fabricación -->
-    <div id="modalErrorFabricacion" class="hidden">
-        <h2>Materiales Insuficientes</h2>
-        <p>No hay suficientes materiales para completar la fabricación.</p>
-        <br>
-        <button id="cerrar" onclick="cerrarErrorFabricacion()">Cerrar</button>
+    <div id="modalErrorFabricacion" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Materiales Insuficientes</h5>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" onclick="cerrarErrorFabricacion()"></button>
+                </div>
+                <div class="modal-body">
+                    <p>No hay suficientes materiales para completar la fabricación.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal de Tienda -->
-<div id="modalTienda" class="hidden">
-    <h2>Tienda</h2>
-    
-    <div class="tienda-section">
-        <h3>Comprar</h3>
-        <button onclick="comprar('pocionVidaPequeña')">Comprar: 5 Oro → 1 Poción pequeña</button>
-        <button onclick="comprar('pocionVidaMediana')">Comprar: 15 Oro → 1 Poción mediana</button>
-        <button onclick="comprar('pocionVidaGrande')">Comprar: 30 Oro → 1 Poción grande</button>
+    <div id="modalTienda" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tienda</h5>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"onclick="cerrarTienda()"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>Comprar</h3>
+                    <button onclick="comprar('pocionVidaPequeña')">Comprar: 5 Oro → 1 Poción pequeña</button>
+                    <button onclick="comprar('pocionVidaMediana')">Comprar: 15 Oro → 1 Poción mediana</button>
+                    <button onclick="comprar('pocionVidaGrande')">Comprar: 30 Oro → 1 Poción grande</button>
+                    <h3>Vender</h3>
+                    <button onclick="vender('madera')">Vender: 30 Madera → 1 Oro</button>
+                    <button onclick="vender('tablones')">Vender: 15 Tablones → 5 Oro</button>
+                    <button onclick="vender('vigas')">Vender: 10 Vigas → 10 Oro</button>
+                    <button onclick="vender('peces')">Vender: 30 Peces → 1 Oro</button>
+                    <button onclick="vender('pecesVerdes')">Vender: 15 Peces Verdes → 5 Oro</button>
+                    <button onclick="vender('pecesDorados')">Vender: 10 Peces Dorados → 10 Oro</button>
+                    <button onclick="vender('carne')">Vender: 30 Carne → 1 Oro</button>
+                    <button onclick="vender('carneSeca')">Vender: 15 Carne Seca → 5 Oro</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <hr>
-    
-    <div class="tienda-section">
-        <h3>Vender</h3>
-        <button onclick="vender('madera')">Vender: 30 Madera → 1 Oro</button>
-        <button onclick="vender('tablones')">Vender: 15 Tablones → 5 Oro</button>
-        <button onclick="vender('vigas')">Vender: 10 Vigas → 10 Oro</button>
-        <button onclick="vender('peces')">Vender: 30 Peces → 1 Oro</button>
-        <button onclick="vender('pecesVerdes')">Vender: 15 Peces Verdes → 5 Oro</button>
-        <button onclick="vender('pecesDorados')">Vender: 10 Peces Dorados → 10 Oro</button>
-        <button onclick="vender('carne')">Vender: 30 Carne → 1 Oro</button>
-        <button onclick="vender('carneSeca')">Vender: 15 Carne Seca → 5 Oro</button>
-    </div>
-    
-    <br>
-    <button id="cerrar" onclick="cerrarTienda()">Cerrar</button>
-</div>
-
-
 
     <!-- Modal de Error de Compra -->
-    <div id="modalErrorCompra" class="hidden">
-        <h2>Oro Insuficiente</h2>
-        <p>Completa quest para ganar oro</p>
-        <br>
-        <button id="cerrar" onclick="cerrarErrorCompra()">Cerrar</button>
+    <div id="modalErrorCompra" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Oro Insuficiente</h5>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" onclick="cerrarErrorCompra()"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Completa quest para ganar oro</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    
+    <!-- Modal de log de combate -->
+    <div id="modalLogCombate" class="hidden" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Último combate</h5><br>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" onclick="cerrarLog()"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="log"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
