@@ -2,7 +2,7 @@ body {
     text-align: center;
     background-color: #222;
     color: white;
-    overflow: hidden;
+    overflow: auto; /* Permite el desplazamiento en toda la página */
 }
 
 .hidden {
@@ -33,7 +33,9 @@ body {
     opacity: 0;
     max-height: 80vh; /* Limita la altura del modal */
     overflow-y: auto; /* Añade scroll vertical */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
     width: 300px; /* Ajuste para el ancho */
+    padding-bottom: 20px; /* Evita que el contenido quede pegado al borde inferior */
 }
 
 #modalFabricacion.show,
